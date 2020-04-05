@@ -22,7 +22,7 @@ public class Agent implements Serializable, Runnable {
 	transient private Thread thread;
 	private Simulation simulation;
 	private String name;
-	private SimState state;
+	private AgentState state;
 	private Heading heading;
 	private int xCordinate;
 	private int yCordinate;
@@ -54,7 +54,7 @@ public class Agent implements Serializable, Runnable {
 		return this.yCordinate;
 	}
 	
-	synchronized public SimState getState() { 
+	synchronized public AgentState getState() { 
 		return this.state; 
 	}
 	
@@ -63,7 +63,7 @@ public class Agent implements Serializable, Runnable {
 	 * @return true if the state is STOPPED, false otherwise
 	 */
 	synchronized public boolean isStopped() { 
-		return this.state == SimState.STOPPED; 
+		return this.state == AgentState.STOPPED; 
 	}
 	
 	/**
@@ -71,21 +71,21 @@ public class Agent implements Serializable, Runnable {
 	 * @return true if the state if SUSPENDED, false otherwise
 	 */
 	synchronized public boolean isSuspended() { 
-		return this.state == SimState.SUSPENDED; 
+		return this.state == AgentState.SUSPENDED; 
 	}
 	
 	/**
 	 * Set the state of an agent to SUSPENDED
 	 */
 	synchronized public void suspend() { 
-		this.state = SimState.SUSPENDED; 
+		this.state = AgentState.SUSPENDED; 
 	}
 	
 	/**
 	 * Set the state of an agent to STOPPED
 	 */
 	synchronized public void stop() { 
-		this.state = SimState.STOPPED; 
+		this.state = AgentState.STOPPED; 
 	}
 	
 	/**
@@ -95,7 +95,7 @@ public class Agent implements Serializable, Runnable {
 	 */
 	synchronized public void start() 
 	{
-		state = SimState.READY;
+		state = AgentState.READY;
 		thread = new Thread(this);
 		thread.start();
 	}
@@ -107,7 +107,7 @@ public class Agent implements Serializable, Runnable {
 	synchronized public void resume()
 	{
 		if (!isStopped()) {
-			state = SimState.READY;
+			state = AgentState.READY;
 			notify();
 		}
 	}
@@ -207,7 +207,7 @@ public class Agent implements Serializable, Runnable {
 	public void run() {
 		thread = Thread.currentThread();
 		while(!isStopped()) {
-			state = SimState.RUNNING;
+			state = AgentState.RUNNING;
 			update();
 			simulation.clock++;
 			simulation.changed();

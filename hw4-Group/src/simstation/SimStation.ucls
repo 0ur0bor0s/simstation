@@ -55,8 +55,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <enumeration id="7" language="java" name="simstation.SimState" project="hw4-Group" 
-    file="/hw4-Group/src/simstation/SimState.java" binary="false" corner="BOTTOM_RIGHT">    
+  <enumeration id="7" language="java" name="simstation.AgentState" project="hw4-Group" 
+    file="/hw4-Group/src/simstation/AgentState.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="155" width="157" x="1627" y="541"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -119,35 +119,51 @@
     </display>  
   </enumeration>  
   <association id="14">    
-    <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="15" name="agents"/>      
-      <multiplicity id="16" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="12" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="17">    
     <end type="SOURCE" refId="12" navigable="false">      
-      <attribute id="18" name="heading"/>      
-      <multiplicity id="19" minimum="0" maximum="1"/>    
+      <attribute id="15" name="heading">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="16" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="13" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
+  <association id="17">    
+    <end type="SOURCE" refId="12" navigable="false">      
+      <attribute id="18" name="simulation">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="19" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
   <association id="20">    
     <end type="SOURCE" refId="12" navigable="false">      
-      <attribute id="21" name="state"/>      
-      <multiplicity id="22" minimum="0" maximum="1"/>    
+      <attribute id="21" name="state">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="22" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="7" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="23">    
-    <end type="SOURCE" refId="12" navigable="false">      
-      <attribute id="24" name="simulation"/>      
-      <multiplicity id="25" minimum="0" maximum="1"/>    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="24" name="agents">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="25" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
-    <end type="TARGET" refId="10" navigable="true"/>    
+    <end type="TARGET" refId="12" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
