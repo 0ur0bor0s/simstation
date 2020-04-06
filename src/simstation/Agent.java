@@ -7,9 +7,12 @@ import java.util.Random;
  * Edit history:
  *   Quang-Duy, 03/30: created constructors, getters, checking, suspend, stop, start, resume, update, move, run and join methods
  *   Quang-Duy, 03/31: added comments, out of bounce checking and handling methods, and improved the methods above
+ *   Ben Foley, 04/05: made Agent and update method abstract.
+ *                     overrode agent constructor to also take in a heading parameter needed for some customizations
+ *
 */
 
-public class Agent implements Serializable, Runnable {
+public abstract class Agent implements Serializable, Runnable {
 	
 	/**
 	 * 
@@ -113,12 +116,9 @@ public class Agent implements Serializable, Runnable {
 	}
 	
 	/**
-	 * Updating the status of the program?!?
+	 * abtract method to update simulation
 	 */
-	public void update()
-	{
-		System.out.println("...running " + this);
-	}
+	public abstract void update();
 	
 	/**
 	 * Move the agent a number of steps
@@ -226,4 +226,5 @@ public class Agent implements Serializable, Runnable {
 		if (thread != null) 
 			thread.join();
 	}
+
 }

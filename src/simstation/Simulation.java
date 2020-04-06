@@ -11,6 +11,7 @@ import java.util.ArrayList;
 /*
  * Edit history:
  *   Quang-Duy, 03/30: created
+ *   Ben Foley, 04/05: added empty populate method
 */
 
 import mvc.*;
@@ -118,6 +119,11 @@ public class Simulation extends Model {
 		stats[1] = "clock = " + this.clock;
 		Utilities.inform(stats);
 	}
+
+	/**
+	 * To be implemented by subclasses
+	 */
+	public void populate() {}
 }
 
 

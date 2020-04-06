@@ -1,10 +1,15 @@
 package mvc;
 
 public interface AppFactory {
-    Model makeModel();
-    String[] getEditCommands();
-    Command makeEditCommand(Model model, String cmmd);
-    String getTitle();
-    String about();
-    String[] getHelp();
+	public Model makeModel();
+	
+	public String[] getEditCommands();
+	
+	public Command makeEditCommand(Model model, String type);
+	
+	public String getTitle();
+	
+	public String[] getHelp();
+	
+	public String about();
 }
