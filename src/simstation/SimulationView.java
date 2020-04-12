@@ -38,7 +38,7 @@ public class SimulationView extends View {
 		g2.setColor(Color.RED);
 		for(int i = 0; i < simulation.getAgents().size(); i++)
 		{
-			g2.drawRect(simulation.getAgents().get(i).getX(), simulation.getAgents().get(i).getY(), Agent.AGENT_SIZE, Agent.AGENT_SIZE);
+			g2.fillRect(simulation.getAgents().get(i).getX(), simulation.getAgents().get(i).getY(), Agent.AGENT_SIZE, Agent.AGENT_SIZE);
 		}
 		
 		g2.setColor(oldColor);
