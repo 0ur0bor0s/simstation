@@ -18,15 +18,17 @@ public class SimulationFactory implements AppFactory {
 	*/
 	
 	public String[] getEditCommands() {
-		return new String[]{"start", "suspend", "resume", "stop"};
+		return new String[]{"Start", "Suspend", "Resume", "Stop"};
 	}
 
 	public Command makeEditCommand(Model model, String type) {
-		if (type == "start") return new StartCommand(model);
-		if (type == "stop") return new StopCommand(model);
-		if (type == "suspend") return new SuspendCommand(model);
-		if (type == "resume") return new ResumeCommand(model);
-		return null;
+		switch (type) {
+			case "Start": return new StartCommand(model);
+			case "Stop": return new StopCommand(model);
+			case "Suspend": return new SuspendCommand(model);
+			case "Resume": return new ResumeCommand(model);
+			default: return null;
+		}
 	}
 
 	public String getTitle() { return "Sim Station"; }

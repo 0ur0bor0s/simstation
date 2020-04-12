@@ -23,8 +23,8 @@ public abstract class Agent implements Serializable, Runnable {
 	public static Integer AGENT_SIZE = 6;
 	
 	transient private Thread thread;
-	private Simulation simulation;
-	private String name;
+	private final Simulation simulation;
+	private final String name;
 	private AgentState state;
 	private Heading heading;
 	private int xCordinate;
@@ -47,7 +47,28 @@ public abstract class Agent implements Serializable, Runnable {
 		this.xCordinate = gen.nextInt(WORLD_SIZE + 1);
 		this.yCordinate = gen.nextInt(WORLD_SIZE + 1);
 	}
-	
+
+
+	/**
+	 * Override constructor + heading
+	 * Set the name to the name of the agent (birds, bees, shoppers, ...)
+	 * Set the initial heading to north
+	 * Set the random location to an agent
+	 * @param name the name of the agent
+	 * @param heading the direction the agent will initially be facing
+	 */
+	public Agent(Simulation simulation, String name, Heading heading)
+	{
+		this.simulation = simulation;
+		this.name = name;
+		this.heading = heading;
+
+		Random gen = new Random();
+		this.xCordinate = gen.nextInt(WORLD_SIZE + 1);
+		this.yCordinate = gen.nextInt(WORLD_SIZE + 1);
+	}
+
+
 	/****** Getter functions ******/
 	public Integer getX() {
 		return this.xCordinate;
@@ -56,7 +77,20 @@ public abstract class Agent implements Serializable, Runnable {
 	public Integer getY() {
 		return this.yCordinate;
 	}
-	
+
+	public Simulation getSimulation() {
+		return this.simulation;
+	}
+
+	public Heading getHeading() {
+		return this.heading;
+	}
+
+	/****** Setter functions ******/
+	public void setHeading(Heading heading) {
+		this.heading = heading;
+	}
+
 	synchronized public AgentState getState() { 
 		return this.state; 
 	}
@@ -155,23 +189,20 @@ public abstract class Agent implements Serializable, Runnable {
 	 * Helper function to check if the agent's position is outside of the frame
 	 * @return
 	 */
-	public boolean isOutOfBound() 
+	private boolean isOutOfBound()
 	{
 		if(this.xCordinate < SimulationView.RECTANGLE_X_CORDINATE || 
 				this.xCordinate > WORLD_SIZE + SimulationView.RECTANGLE_X_CORDINATE)
 			return true;
-		else if(this.yCordinate < SimulationView.RECTANGLE_Y_CORDINATE || 
-				this.yCordinate > WORLD_SIZE + SimulationView.RECTANGLE_Y_CORDINATE)
-			return true;
-		
-		return false;
+		else return this.yCordinate < SimulationView.RECTANGLE_Y_CORDINATE ||
+				this.yCordinate > WORLD_SIZE + SimulationView.RECTANGLE_Y_CORDINATE;
 	}
 	
 	/**
 	 * Helper function to bring the agent to the opposite side if it moves out of the frame
 	 * @param steps numbers of steps the agent moves; from user's input?!?
 	 */
-	public void outOfBoundHandling(int steps)
+	private void outOfBoundHandling(int steps)
 	{
 		// Number of loop is 1 if steps < WORLD_SIZE
 		int numberOfLoop = 1;

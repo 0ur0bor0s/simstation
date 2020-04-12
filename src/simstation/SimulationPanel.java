@@ -3,6 +3,7 @@ package simstation;
 /*
  * Edit history:
  *   Quang-Duy, 03/30: created and completed all the buttons as well as the layout of the buttons
+ *   Ben Foley, 04/05: few minor edits
 */
 
 import java.awt.BorderLayout;
@@ -11,7 +12,11 @@ import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import flocking.FlockingFactory;
 import mvc.*;
+import plague.PlagueFactory;
+import plague.PlagueSimulation;
+import plague.PlagueView;
 
 public class SimulationPanel extends AppPanel {
 
@@ -20,12 +25,18 @@ public class SimulationPanel extends AppPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private JButton start, suspend, resume, stop, stats;
+	private final JButton start;
+	private final JButton suspend;
+	private final JButton resume;
+	private final JButton stop;
+	private final JButton stats;
 	
 	public SimulationPanel(AppFactory factory) {
 		super(factory);
 		SimulationView view = new SimulationView((Simulation)model);
-		
+		// Custom plague view
+		//SimulationView view = new PlagueView((PlagueSimulation)model);
+
 		this.setLayout(new GridLayout(1, 2));
 		
 		this.start = new JButton("Start");
@@ -75,8 +86,10 @@ public class SimulationPanel extends AppPanel {
 	}
 	
 	public static void main(String[] args) {
-		AppFactory factory = new SimulationFactory();
-		AppPanel panel = new SimulationPanel(factory);
+		// flocking
+		AppPanel panel = new SimulationPanel(new FlockingFactory());
+		// Plague
+		//AppPanel panel = new SimulationPanel(new PlagueFactory());
 		panel.display();
 	}
 }

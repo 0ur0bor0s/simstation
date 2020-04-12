@@ -1,4 +1,4 @@
-package flocking;
+package plague;
 
 /*
  * Edit history:
@@ -9,13 +9,15 @@ import mvc.Utilities;
 import simstation.Heading;
 import simstation.Simulation;
 
-public class FlockingSimulation extends Simulation {
-    private static final int NUM_BIRDS = 50;
+public class PlagueSimulation extends Simulation {
+    public static int VIRULENCE = 5; // % chance of infection
+    public static int RESISTANCE = 0; // % chance of resisting infection
+    private static final int NUM_PEOPLE = 50;
 
     @Override
     public void populate() {
-        for (int i=1; i<=NUM_BIRDS; i++) {
-            String name = "Bird " + i;
+        for (int i=1; i<=NUM_PEOPLE; i++) {
+            String name = "Person " + i;
             Heading heading = Heading.NORTH;
             int randInt = Utilities.rng.nextInt(4);
             switch (randInt) {
@@ -24,8 +26,8 @@ public class FlockingSimulation extends Simulation {
                 case 2: heading = Heading.SOUTH; break;
                 case 3: heading = Heading.WEST; break;
             }
-            Bird newBird = new Bird(this, name, heading);
-            this.agents.add(newBird);
+            Person newPerson = new Person(this, name, heading);
+            this.agents.add(newPerson);
         }
     }
 }

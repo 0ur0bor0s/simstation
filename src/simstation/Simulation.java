@@ -7,6 +7,8 @@ package simstation;
 */
 
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /*
  * Edit history:
@@ -22,10 +24,12 @@ public class Simulation extends Model {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private ArrayList<Agent> agents;
+	protected ArrayList<Agent> agents;
 	protected String name;
 	protected Long clock;
-	
+
+	private Timer timer;
+
 	/**
 	 * Default constructor
 	 * Set the empty array list to variable agents
@@ -36,7 +40,7 @@ public class Simulation extends Model {
 	public Simulation(String name) {
 		agents = new ArrayList<>();
 		this.name = name;
-		clock = 0l;
+		clock = 0L;
 	}
 
 	/**
@@ -72,12 +76,13 @@ public class Simulation extends Model {
 	 */
 	public void start() 
 	{
-		this.clock = 0l;
-		
-		for(int i = 0; i < agents.size(); i++)
-		{
-			this.agents.get(i).start();
+		//this.clock = 0L;
+
+		for (Agent agent : agents) {
+			agent.start();
 		}
+
+		this.startTimer();
 	}
 	
 	/**
@@ -85,9 +90,10 @@ public class Simulation extends Model {
 	 */
 	public void stop() 
 	{
-		for(int i = 0; i < agents.size(); i++) {
-			this.agents.get(i).stop();
+		for (Agent agent : agents) {
+			agent.stop();
 		}
+		this.stopTimer();
 	}
 	
 	/**
@@ -95,9 +101,10 @@ public class Simulation extends Model {
 	 */
 	public void suspend()
 	{
-		for(int i = 0; i < agents.size(); i++) {
-			this.agents.get(i).suspend();
+		for (Agent agent : agents) {
+			agent.suspend();
 		}
+		//this.stopTimer();
 	}
 	
 	/**
@@ -105,9 +112,10 @@ public class Simulation extends Model {
 	 */
 	public void resume() 
 	{
-		for(int i = 0; i < agents.size(); i++) {
-			this.agents.get(i).resume();
+		for (Agent agent : agents) {
+			agent.resume();
 		}
+		//this.startTimer();
 	}
 	
 	/**
@@ -124,6 +132,24 @@ public class Simulation extends Model {
 	 * To be implemented by subclasses
 	 */
 	public void populate() {}
+
+	private void startTimer() {
+		timer = new Timer();
+		timer.scheduleAtFixedRate(new ClockUpdater(), 1000, 1000);
+	}
+
+	private void stopTimer() {
+		timer.cancel();
+		timer.purge();
+	}
+
+	private class ClockUpdater extends TimerTask {
+		public void run() {
+			clock++;
+			//changed();
+		}
+	}
+
 }
 
 
