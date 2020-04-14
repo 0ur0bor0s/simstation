@@ -97,6 +97,7 @@ public class Simulation extends Model {
 			this.agents.get(i).stop();
 		}
 		stopTimer();
+		changed();
 	}
 
 	/**
@@ -114,6 +115,7 @@ public class Simulation extends Model {
 		for(int i = 0; i < agents.size(); i++) {
 			this.agents.get(i).suspend();
 		}
+		changed();
 	}
 
 	/**
@@ -134,6 +136,7 @@ public class Simulation extends Model {
 		for(int i = 0; i < agents.size(); i++) {
 			this.agents.get(i).resume();
 		}
+		changed();
 	}
 
 	/**
