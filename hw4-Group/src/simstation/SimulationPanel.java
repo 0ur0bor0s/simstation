@@ -11,6 +11,7 @@ import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import Flocking.FlockingSimulationFactory;
 import mvc.*;
 
 public class SimulationPanel extends AppPanel {
@@ -22,9 +23,9 @@ public class SimulationPanel extends AppPanel {
 	
 	private JButton start, suspend, resume, stop, stats;
 	
-	public SimulationPanel(AppFactory factory) {
+	public SimulationPanel(SimFactory factory) {
 		super(factory);
-		SimulationView view = new SimulationView((Simulation)model);
+		View view = factory.getView(model);
 		
 		this.setLayout(new GridLayout(1, 2));
 		
@@ -72,11 +73,5 @@ public class SimulationPanel extends AppPanel {
 		buttonPanel.add(mathPanel, "North");
 		this.add(buttonPanel, "West");
 		this.add(view, "East");
-	}
-	
-	public static void main(String[] args) {
-		AppFactory factory = new SimulationFactory();
-		AppPanel panel = new SimulationPanel(factory);
-		panel.display();
 	}
 }

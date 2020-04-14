@@ -1,5 +1,6 @@
 package simstation;
 
+import java.awt.Color;
 import java.io.Serializable;
 import java.util.Random;
 
@@ -7,9 +8,10 @@ import java.util.Random;
  * Edit history:
  *   Quang-Duy, 03/30: created constructors, getters, checking, suspend, stop, start, resume, update, move, run and join methods
  *   Quang-Duy, 03/31: added comments, out of bounce checking and handling methods, and improved the methods above
+ *   
 */
 
-public class Agent implements Serializable, Runnable {
+public abstract class Agent implements Serializable, Runnable {
 	
 	/**
 	 * 
@@ -17,13 +19,14 @@ public class Agent implements Serializable, Runnable {
 	private static final long serialVersionUID = 1L;
 	
 	public static Integer WORLD_SIZE = 250; // height & width of the world (& view)
-	public static Integer AGENT_SIZE = 6;
+	public static Integer AGENT_SIZE = 5;
 	
 	transient private Thread thread;
-	private Simulation simulation;
+	
+	protected Simulation simulation;
 	private String name;
 	private AgentState state;
-	private Heading heading;
+	protected Heading heading;
 	private int xCordinate;
 	private int yCordinate;
 	
@@ -34,26 +37,34 @@ public class Agent implements Serializable, Runnable {
 	 * Set the random location to an agent
 	 * @param name the name of the agent
 	 */
-	public Agent(String name)
+	public Agent(String name, Simulation sim)
 	{
-		simulation = new Simulation();
+		this.simulation = sim;
 		this.name = name;
-		this.heading = Heading.NORTH;
+		this.heading = Heading.getRandomDirection();
+		this.state = null;
 		
 		Random gen = new Random();
 		this.xCordinate = gen.nextInt(WORLD_SIZE + 1);
 		this.yCordinate = gen.nextInt(WORLD_SIZE + 1);
 	}
 	
-	/****** Getter functions ******/
-	public Integer getX() {
-		return this.xCordinate;
-	}
+			/****** Getter functions ******/
+	public Integer getX() { return this.xCordinate; }
 	
-	public Integer getY() {
-		return this.yCordinate;
-	}
+	public Integer getY() { return this.yCordinate; }
 	
+	public Heading getHeading() { return this.heading; }
+	
+	public Simulation getSimulation() { return this.simulation; }
+	
+			/****** Setter functions ******/
+	public void setHeading(Heading heading) { this.heading = heading; }
+	
+	/**
+	 * Get the state of an agent
+	 * @return the state of an agent
+	 */
 	synchronized public AgentState getState() { 
 		return this.state; 
 	}
@@ -93,7 +104,7 @@ public class Agent implements Serializable, Runnable {
 	 * Start the clock in the simulation class
 	 * Start and run the thread
 	 */
-	synchronized public void start() 
+	synchronized public void start()
 	{
 		state = AgentState.READY;
 		thread = new Thread(this);
@@ -115,10 +126,7 @@ public class Agent implements Serializable, Runnable {
 	/**
 	 * Updating the status of the program?!?
 	 */
-	public void update()
-	{
-		System.out.println("...running " + this);
-	}
+	public abstract void update();
 	
 	/**
 	 * Move the agent a number of steps
@@ -147,8 +155,6 @@ public class Agent implements Serializable, Runnable {
 		{
 			outOfBoundHandling(steps);
 		}
-		
-		simulation.changed();
 	}
 	
 	/**
@@ -209,7 +215,6 @@ public class Agent implements Serializable, Runnable {
 		while(!isStopped()) {
 			state = AgentState.RUNNING;
 			update();
-			simulation.clock++;
 			simulation.changed();
 			try {
 				Thread.sleep(100);

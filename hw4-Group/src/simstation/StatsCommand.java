@@ -14,9 +14,8 @@ public class StatsCommand extends Command {
 	}
 
 	public void execute() {
-		if (model != null && model instanceof Simulation) {
-			Simulation sim = (Simulation)model;
-			sim.stats();
-		}
+
+		Simulation sim = (Simulation)model;
+		Utilities.inform(sim.getStats());
 	}
 }

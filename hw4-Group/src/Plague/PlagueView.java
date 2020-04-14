@@ -1,4 +1,4 @@
-package simstation;
+package Plague;
 
 /*
  * Edit history:
@@ -11,8 +11,9 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import mvc.*;
+import simstation.*;
 
-public class SimulationView extends View {
+public class PlagueView extends SimulationView {
 	/**
 	 * 
 	 */
@@ -21,21 +22,24 @@ public class SimulationView extends View {
 	public static Integer RECTANGLE_X_CORDINATE = 10; // In case if we want to move the frame, this keeps the turtle stay in its world
 	public static Integer RECTANGLE_Y_CORDINATE = 10; // In case if we want to move the boundary, this keeps the turtle stay in its world
 	
-	public SimulationView(Model model) {
+	public PlagueView(Model model) {
 		super(model);
 	}
 	
 	public void paintComponent(Graphics gc) 
 	{
 		Graphics2D g2 = (Graphics2D) gc;
-		Simulation simulation = (Simulation)model;
+		PlagueSimulation simulation = (PlagueSimulation)model;
 		Color oldColor = gc.getColor();
 		
-		g2.setColor(Color.RED);
 		for(int i = 0; i < simulation.getAgents().size(); i++)
 		{
-			g2.fillOval(simulation.getAgents().get(i).getX(), simulation.getAgents().get(i).getY(), 
-					Agent.AGENT_SIZE, Agent.AGENT_SIZE);
+			Corona agent = (Corona)simulation.getAgents().get(i);
+			if(agent.isInfected())
+				g2.setColor(Color.RED);
+			else
+				g2.setColor(Color.GREEN);
+			g2.fillOval(simulation.getAgents().get(i).getX(), simulation.getAgents().get(i).getY(), Agent.AGENT_SIZE, Agent.AGENT_SIZE);
 		}
 		
 		g2.setColor(Color.BLACK);
