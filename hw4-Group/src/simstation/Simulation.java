@@ -13,11 +13,6 @@ import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
-/*
- * Edit history:
- *   Quang-Duy, 03/30: created
- */
-
 import mvc.*;
 
 public class Simulation extends Model {
@@ -27,7 +22,7 @@ public class Simulation extends Model {
 	private static final long serialVersionUID = 1L;
 
 	protected ArrayList<Agent> agents;
-	private Timer timer;
+	transient private Timer timer;
 	protected String name;
 	protected Integer clock;
 	private boolean notifyStats;
