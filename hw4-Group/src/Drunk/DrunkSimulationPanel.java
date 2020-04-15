@@ -1,5 +1,10 @@
 package Drunk;
 
+/*/
+ * 4/2 Created Drunk Simulation with constructor - Singh
+ * 4/3 Added Main - Anmol Singh
+ */
+
 import mvc.*;
 import simstation.*;
 

@@ -4,7 +4,9 @@ package simstation;
  * Edit history:
  *   Quang-Duy, 03/30: created constructors, getters, start, stop, suspend, resume and stats methods
  *   Quang-Duy, 03/31: added comments and improved the methods above
- *   Quang-Duy, 10/04: fixed the clock from simulation to 
+ *   Quang-Duy, 10/04: fixed the clock from simulated clock to real time clock
+ *   Quang-Duy, 12/04: added notifyStats and popUpStatsTimer variables + notificationPopUp method + modify ClockUpdater method
+ *   Quang-Duy, 13/04: Finalized everything such as deleting old codes, clean up format, ...
  */
 
 import java.util.ArrayList;

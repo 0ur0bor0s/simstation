@@ -1,8 +1,11 @@
 package Prisoner;
 
-import java.util.Random;
+/*
+ * 4/2 Created PrisonerSimulation Constructor and Class - Anmol Singh
+ * 4/3 Created Populate function adding Prisoners with all strategies - Anmol Singh
+ */
 
-import Plague.Corona;
+import java.util.Random;
 import simstation.*;
 
 public class PrisonerSimulation extends Simulation 

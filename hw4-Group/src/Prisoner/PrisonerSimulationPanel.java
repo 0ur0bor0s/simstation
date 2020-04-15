@@ -1,5 +1,10 @@
 package Prisoner;
 
+/*
+ * 4/2 Created Class and Constructor - Anmol Singh
+ * 4/5 added main method in PrisonSimulationPanel to test functionanilty - Anmol Singh
+ */
+
 import mvc.*;
 import simstation.*;
 

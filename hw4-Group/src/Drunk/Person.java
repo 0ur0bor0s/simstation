@@ -1,5 +1,15 @@
 package Drunk;
 
+/*
+ * 4/2 Created Person class, adding Constructor 
+ * 4/3 Added Update - Anmol Singh
+ */
+
+/*
+ * Edit history:
+ *   Anmol, 04/02: created constructors, and update method
+ */
+
 import mvc.Utilities;
 import simstation.*;
 

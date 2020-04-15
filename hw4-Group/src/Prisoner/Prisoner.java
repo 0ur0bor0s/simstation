@@ -1,5 +1,10 @@
 package Prisoner;
 
+/* Anmol Singh
+ * 4/2 created Prisoner Class Created Constructor
+ * 4/5: Created Update function 
+ */
+
 import simstation.*;
 
 public class Prisoner extends Agent 

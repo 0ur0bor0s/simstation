@@ -8,7 +8,7 @@ import java.util.Random;
  * Edit history:
  *   Quang-Duy, 03/30: created constructors, getters, checking, suspend, stop, start, resume, update, move, run and join methods
  *   Quang-Duy, 03/31: added comments, out of bounce checking and handling methods, and improved the methods above
- *   
+ *   Quang-Duy, 04/13: finalized everything such as deleting old code, add global variables, ...
 */
 
 public abstract class Agent implements Serializable, Runnable {
@@ -124,7 +124,7 @@ public abstract class Agent implements Serializable, Runnable {
 	}
 	
 	/**
-	 * Updating the status of the program?!?
+	 * Updating the status of the program, override in sub-class
 	 */
 	public abstract void update();
 	

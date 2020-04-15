@@ -1,5 +1,9 @@
 package Drunk;
 
+/*
+ * 4/2: Created Class and Added Populate - AnmolSingh
+ */
+
 import simstation.*;
 
 public class DrunkSimulation extends Simulation 

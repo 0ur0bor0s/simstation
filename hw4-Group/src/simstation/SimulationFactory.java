@@ -2,7 +2,8 @@ package simstation;
 
 /*
  * Edit history:
- *   Quang-Duy, 03/30: created and completed 
+ *   Quang-Duy, 03/30: created
+ *   Quang-Duy, 04/12: added getView method
 */
 
 import mvc.*;

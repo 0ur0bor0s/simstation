@@ -4,6 +4,7 @@ package simstation;
  * Edit history:
  *   Quang-Duy, 03/30: created
  *   Quang-Duy, 03/31: added drawing the rectangle and the agents
+ *   Quang-Duy, 04/13: finalized everything such as deleting old code, add global variables, ...
 */
 
 import java.awt.BasicStroke;
@@ -40,9 +41,11 @@ public class SimulationView extends View {
 		
 		g2.setColor(Color.BLACK);
 		g2.setStroke(new BasicStroke(3));
-		g2.drawRect(RECTANGLE_X_CORDINATE, RECTANGLE_Y_CORDINATE, Agent.WORLD_SIZE + 3, Agent.WORLD_SIZE + 3);
+		g2.drawRect(RECTANGLE_X_CORDINATE, RECTANGLE_Y_CORDINATE, Agent.WORLD_SIZE + Agent.AGENT_SIZE/2, Agent.WORLD_SIZE + Agent.AGENT_SIZE/2);
 		
-		
+		//Reset the stroke back to default
+		g2.setStroke(new BasicStroke());
+		//Reset the color back to default
 		g2.setColor(oldColor);
 	}
 }

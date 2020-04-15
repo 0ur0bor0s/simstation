@@ -1,5 +1,12 @@
 package Prisoner;
 
+/*
+ * 3/30 - Strategy class to be inherited and changed
+ * 4/1 add constructor that if not specified assigns random strategy
+ * 
+ * -Anmol Singh
+ */
+
 import mvc.Utilities;
 
 public abstract class CooperationStrat 
