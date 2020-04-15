@@ -12,7 +12,7 @@ public class Corona extends Agent
 
 	public static int VIRULENCE = 50; // % chance of infection
 	public static int RESISTANCE = 2; // % chance of resisting infection
-	public static Integer NEIGHBOR_RANGE = 10;
+	public static Integer NEIGHBOR_RANGE = 15;
 	public static Integer MAX_SPEED = 8;
 	public static Integer MIN_SPEED = 5;
 	public static Integer POPULATION = 50;
@@ -37,20 +37,16 @@ public class Corona extends Agent
 	{
 		Corona neighbor = (Corona)simulation.getNeighbor(this, NEIGHBOR_RANGE);
 		if(neighbor != null) {
-			if(neighbor.isInfected == true)
+			if(neighbor.isInfected == false && this.isInfected == true) //If neighbor isn't infected but this is infected
 			{
-				if(Utilities.rng.nextInt(101) >= VIRULENCE)
+				if(Utilities.rng.nextInt(100) >= VIRULENCE) //50% chance to get infected
 				{
-					this.isInfected = true;
+					if(Utilities.rng.nextInt(100) > RESISTANCE) //2% chance to resist
+						neighbor.isInfected = true;
 				}
 			}
 		}
 		
-		if(this.isInfected == true)
-		{
-			if(Utilities.rng.nextInt(101) < RESISTANCE)
-				this.isInfected = false;
-		}
 		super.setHeading(Heading.getRandomDirection());
 		super.move(this.speed);
 		this.simulation.changed();

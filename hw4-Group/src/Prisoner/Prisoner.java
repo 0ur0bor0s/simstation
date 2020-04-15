@@ -10,6 +10,7 @@ public class Prisoner extends Agent
 	private static final long serialVersionUID = 1L;
 	
 	public static Integer NEIGHBOR_RANGE = 20;
+	public static Integer POPULATION_FOR_EACH_STRATEGY = 10;
 	public static Integer MAX_SPEED = 20;
 	public static Integer MIN_SPEED = 5;
 
@@ -58,26 +59,6 @@ public class Prisoner extends Agent
 				this.isLastOpponentCooperated = true;
 			}
 		}
-		/*
-		if(this.isCooperated)
-		{
-			if(neighbor.isCooperated) {
-				this.fitness += 3;
-				neighbor.fitness += 3;
-			} else {
-				neighbor.fitness += 5;
-			}
-		} 
-		else 
-		{
-			if(neighbor.isCooperated) {
-				neighbor.fitness += 5;
-			} else {
-				this.fitness += 1;
-				neighbor.fitness += 1;
-			}
-		}
-		 */
 
 		this.heading = Heading.getRandomDirection();
 		super.move(this.speed);

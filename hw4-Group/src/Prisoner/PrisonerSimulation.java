@@ -23,24 +23,24 @@ public class PrisonerSimulation extends Simulation
 	public void populate()
 	{
 		Random ran = new Random();
-		for(int i = 0; i < 10; i++)
+		for(int i = 0; i < Prisoner.POPULATION_FOR_EACH_STRATEGY; i++)
 		{
-			this.agents.add(new Prisoner(this, "Prisoner", ran.nextInt(Prisoner.MAX_SPEED + 1) + Prisoner.MIN_SPEED, new AlwaysCheatStrat()));
+			this.agents.add(new Prisoner(this, "Cheater " + (i+1), ran.nextInt(Prisoner.MAX_SPEED + 1) + Prisoner.MIN_SPEED, new AlwaysCheatStrat()));
 		}
 		
-		for(int i = 0; i < 10; i++)
+		for(int i = 0; i < Prisoner.POPULATION_FOR_EACH_STRATEGY; i++)
 		{
-			this.agents.add(new Prisoner(this, "Prisoner", ran.nextInt(Prisoner.MAX_SPEED + 1) + Prisoner.MIN_SPEED, new AlwaysCoopStrat()));
+			this.agents.add(new Prisoner(this, "Cooperator " + (i+1), ran.nextInt(Prisoner.MAX_SPEED + 1) + Prisoner.MIN_SPEED, new AlwaysCoopStrat()));
 		}
 		
-		for(int i = 0; i < 10; i++)
+		for(int i = 0; i < Prisoner.POPULATION_FOR_EACH_STRATEGY; i++)
 		{
-			this.agents.add(new Prisoner(this, "Prisoner", ran.nextInt(Prisoner.MAX_SPEED + 1) + Prisoner.MIN_SPEED, new LastOpCoopStrat()));
+			this.agents.add(new Prisoner(this, "Reciprocator " + (i+1), ran.nextInt(Prisoner.MAX_SPEED + 1) + Prisoner.MIN_SPEED, new LastOpCoopStrat()));
 		}
 		
-		for(int i = 0; i < 10; i++)
+		for(int i = 0; i < Prisoner.POPULATION_FOR_EACH_STRATEGY; i++)
 		{
-			this.agents.add(new Prisoner(this, "Prisoner", ran.nextInt(Prisoner.MAX_SPEED + 1) + Prisoner.MIN_SPEED, new RandomStrat()));
+			this.agents.add(new Prisoner(this, "Random " + (i+1), ran.nextInt(Prisoner.MAX_SPEED + 1) + Prisoner.MIN_SPEED, new RandomStrat()));
 		}
 	}
 	
